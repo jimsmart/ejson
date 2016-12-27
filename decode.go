@@ -22,7 +22,7 @@ import (
 	"unicode/utf8"
 )
 
-// Unmarshal parses the JSON-encoded data and stores the result
+// Unmarshal parses the EJSON-encoded data and stores the result
 // in the value pointed to by v.
 //
 // Unmarshal uses the inverse of the encodings that
@@ -159,17 +159,12 @@ func (d *decodeState) unmarshal(v interface{}) (err error) {
 		}
 	}()
 
-	// js - wrap incoming []byte and time.Time
+	// Wrap incoming []byte and time.Time,
+	// to provide EJSON decoding.
 	switch x := (v).(type) {
-	// case []byte:
-	// 	t := ejsonBytes{v: &x}
-	// 	v = &t
 	case *[]byte:
 		t := ejsonBytes{v: x}
 		v = &t
-	// case time.Time:
-	// 	t := ejsonDate{v: &x}
-	// 	v = &t
 	case *time.Time:
 		t := ejsonDate{v: x}
 		v = &t

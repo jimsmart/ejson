@@ -2,12 +2,26 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package json implements encoding and decoding of JSON as defined in
-// RFC 4627. The mapping between JSON and Go values is described
+// Package ejson implements encoding and decoding of Meteor's EJSON
+// (Extended JSON). The mapping between EJSON and Go values is
+// identical to package encoding/json (which this package is based
+// upon), but with EJSON encoding for []byte and time.Time.
+// The mapping between JSON and Go values is described
 // in the documentation for the Marshal and Unmarshal functions.
 //
-// See "JSON and Go" for an introduction to this package:
-// https://golang.org/doc/articles/json_and_go.html
+// All EJSON serializations are also valid JSON. For example, an
+// object with a date (time.Time) and some binary data ([]byte)
+// would be serialized in EJSON as:
+//  {
+//       "d": {"$date": 1358205756553},
+//       "b": {"$binary": "c3VyZS4="}
+//  }
+//
+// This package should be used as a drop-in replacement for package
+// encoding/json whenever EJSON encoding is required.
+//
+// Package ejson is derived from a subtree-branch of Go's
+// encoding/json package, currently tracking Go 1.7.4.
 package ejson
 
 import (
@@ -28,7 +42,7 @@ import (
 	"unicode/utf8"
 )
 
-// Marshal returns the JSON encoding of v.
+// Marshal returns the EJSON encoding of v.
 //
 // Marshal traverses the value v recursively.
 // If an encountered value implements the Marshaler interface
@@ -54,8 +68,13 @@ import (
 // This escaping can be disabled using an Encoder with DisableHTMLEscaping.
 //
 // Array and slice values encode as JSON arrays, except that
-// []byte encodes as a base64-encoded string, and a nil slice
-// encodes as the null JSON value.
+// []byte encodes as an EJSON-compatible object containing a
+// single key "$binary" with a base64-encoded string value,
+// and a nil slice encodes as the null JSON value.
+//
+// time.Time values encode as an EJSON-compatible object containing
+// a single key "$date" with a numeric value representing Unix time
+// in milliseconds.
 //
 // Struct values encode as JSON objects. Each exported struct field
 // becomes a member of the object unless
@@ -278,7 +297,8 @@ func (e *encodeState) marshal(v interface{}, opts encOpts) (err error) {
 			err = r.(error)
 		}
 	}()
-	// js - wrap incoming []byte and time.Time
+	// Wrap incoming []byte and time.Time,
+	// to provide EJSON encoding.
 	switch x := (v).(type) {
 	case []byte:
 		t := ejsonBytes{v: &x}
