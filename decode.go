@@ -16,6 +16,7 @@ import (
 	"reflect"
 	"runtime"
 	"strconv"
+	"time"
 	"unicode"
 	"unicode/utf16"
 	"unicode/utf8"
@@ -157,6 +158,22 @@ func (d *decodeState) unmarshal(v interface{}) (err error) {
 			err = r.(error)
 		}
 	}()
+
+	// js - wrap incoming []byte and time.Time
+	switch x := (v).(type) {
+	// case []byte:
+	// 	t := ejsonBytes{v: &x}
+	// 	v = &t
+	case *[]byte:
+		t := ejsonBytes{v: x}
+		v = &t
+	// case time.Time:
+	// 	t := ejsonDate{v: &x}
+	// 	v = &t
+	case *time.Time:
+		t := ejsonDate{v: x}
+		v = &t
+	}
 
 	rv := reflect.ValueOf(v)
 	if rv.Kind() != reflect.Ptr || rv.IsNil() {

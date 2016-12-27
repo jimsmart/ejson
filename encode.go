@@ -23,6 +23,7 @@ import (
 	"strings"
 	"sync"
 	"sync/atomic"
+	"time"
 	"unicode"
 	"unicode/utf8"
 )
@@ -277,6 +278,21 @@ func (e *encodeState) marshal(v interface{}, opts encOpts) (err error) {
 			err = r.(error)
 		}
 	}()
+	// js - wrap incoming []byte and time.Time
+	switch x := (v).(type) {
+	case []byte:
+		t := ejsonBytes{v: &x}
+		v = &t
+	case *[]byte:
+		t := ejsonBytes{v: x}
+		v = &t
+	case time.Time:
+		t := ejsonDate{v: &x}
+		v = &t
+	case *time.Time:
+		t := ejsonDate{v: x}
+		v = &t
+	}
 	e.reflectValue(reflect.ValueOf(v), opts)
 	return nil
 }
