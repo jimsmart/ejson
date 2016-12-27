@@ -1,6 +1,6 @@
 # ejson
 
-[![Build Status](https://img.shields.io/travis/jimsmart/ejson/master.svg?style=flat-square)](https://travis-ci.org/jimsmart/ejson) [![Godoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square)](https://godoc.org/github.com/jimsmart/ejson)
+[![Build Status](https://img.shields.io/travis/jimsmart/ejson/master.svg?style=flat-square)](https://travis-ci.org/jimsmart/ejson) [![Godoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square)](https://godoc.org/github.com/jimsmart/ejson) [![codecov](https://codecov.io/gh/jimsmart/ejson/branch/master/graph/badge.svg)](https://codecov.io/gh/jimsmart/ejson)
 
 Package ejson is a [Go](https://golang.org) package that implements encoding and decoding of Meteor's EJSON (Extended JSON).
 
