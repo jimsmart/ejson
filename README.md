@@ -38,12 +38,12 @@ GoDocs [https://godoc.org/github.com/jimsmart/ejson](https://godoc.org/github.co
 
 To run the tests execute `go test` inside the project folder.
 
-# License
+## License
 
 Package ejson consists of minor modifications to Go standard library's encoding/json package. These modifications are copyright 2016 Jim Smart and released under a BSD-style license.
 
 Package encoding/json is copyright 2009 The Go Authors and released under a [BSD-style license](LICENSE).
 
-# Contributing
+## Contributing
 
 Bug reports are helpful and pull requests are welcome.
