@@ -4,14 +4,14 @@
 
 Package ejson is a [Go](https://golang.org) package that implements encoding and decoding of Meteor's EJSON (Extended JSON).
 
-The mapping between EJSON and Go values is identical to package encoding/json (which this package is based upon), but with EJSON encoding for `[]byte` and `time.Time`.
+The mapping between EJSON and Go values is identical to package encoding/json (which this package is based upon), but with built-in EJSON encoding for `[]byte` and `time.Time`.
 
 All EJSON serializations are also valid JSON. For example, an object with a date (`time.Time`) and some binary data (`[]byte`) would be serialized in EJSON as:
 
 ```json
 {
-    "d": {"$date": 1358205756553},
-    "b": {"$binary": "c3VyZS4="}
+    "d": {"$date": 1358205756553}, // (Unix time in milliseconds)
+    "b": {"$binary": "c3VyZS4="}   // (Base64 encoding)
 }
 ```
 
