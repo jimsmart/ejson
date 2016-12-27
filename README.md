@@ -1,6 +1,6 @@
 # ejson
 
-Package ejson is a [Go](https://golang.org) package implements encoding and decoding of Meteor's EJSON (Extended JSON).
+Package ejson is a [Go](https://golang.org) package that implements encoding and decoding of Meteor's EJSON (Extended JSON).
 
 The mapping between EJSON and Go values is identical to package encoding/json (which this package is based upon), but with EJSON encoding for []byte and time.Time.
 
