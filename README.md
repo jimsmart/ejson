@@ -10,10 +10,12 @@ All EJSON serializations are also valid JSON. For example, an object with a date
 
 ```json
 {
-    "d": {"$date": 1358205756553}, // (Unix time in milliseconds)
-    "b": {"$binary": "c3VyZS4="}   // (Base64 encoding)
+    "d": {"$date": 1358205756553},
+    "b": {"$binary": "c3VyZS4="}
 }
 ```
+
+Where `$date` is Unix time in milliseconds, and `$binary` is base64 encoded data.
 
 This package should be used as a drop-in replacement for package encoding/json whenever EJSON encoding is required.
 
