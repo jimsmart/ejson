@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package json_test
+package ejson_test
 
 import (
 	"bytes"
@@ -12,6 +12,8 @@ import (
 	"log"
 	"os"
 	"strings"
+
+	"github.com/jimsmart/ejson"
 )
 
 func ExampleMarshal() {
@@ -25,7 +27,7 @@ func ExampleMarshal() {
 		Name:   "Reds",
 		Colors: []string{"Crimson", "Red", "Ruby", "Maroon"},
 	}
-	b, err := json.Marshal(group)
+	b, err := ejson.Marshal(group)
 	if err != nil {
 		fmt.Println("error:", err)
 	}
@@ -44,7 +46,7 @@ func ExampleUnmarshal() {
 		Order string
 	}
 	var animals []Animal
-	err := json.Unmarshal(jsonBlob, &animals)
+	err := ejson.Unmarshal(jsonBlob, &animals)
 	if err != nil {
 		fmt.Println("error:", err)
 	}
@@ -65,7 +67,7 @@ func ExampleDecoder() {
 	type Message struct {
 		Name, Text string
 	}
-	dec := json.NewDecoder(strings.NewReader(jsonStream))
+	dec := ejson.NewDecoder(strings.NewReader(jsonStream))
 	for {
 		var m Message
 		if err := dec.Decode(&m); err == io.EOF {
@@ -88,7 +90,7 @@ func ExampleDecoder_Token() {
 	const jsonStream = `
 		{"Message": "Hello", "Array": [1, 2, 3], "Null": null, "Number": 1.234}
 	`
-	dec := json.NewDecoder(strings.NewReader(jsonStream))
+	dec := ejson.NewDecoder(strings.NewReader(jsonStream))
 	for {
 		t, err := dec.Token()
 		if err == io.EOF {
@@ -104,20 +106,20 @@ func ExampleDecoder_Token() {
 		fmt.Printf("\n")
 	}
 	// Output:
-	// json.Delim: { (more)
+	// ejson.Delim: { (more)
 	// string: Message (more)
 	// string: Hello (more)
 	// string: Array (more)
-	// json.Delim: [ (more)
+	// ejson.Delim: [ (more)
 	// float64: 1 (more)
 	// float64: 2 (more)
 	// float64: 3
-	// json.Delim: ] (more)
+	// ejson.Delim: ] (more)
 	// string: Null (more)
 	// <nil>: <nil> (more)
 	// string: Number (more)
 	// float64: 1.234
-	// json.Delim: }
+	// ejson.Delim: }
 }
 
 // This example uses a Decoder to decode a streaming array of JSON objects.
@@ -134,7 +136,7 @@ func ExampleDecoder_Decode_stream() {
 	type Message struct {
 		Name, Text string
 	}
-	dec := json.NewDecoder(strings.NewReader(jsonStream))
+	dec := ejson.NewDecoder(strings.NewReader(jsonStream))
 
 	// read open bracket
 	t, err := dec.Token()
@@ -163,13 +165,13 @@ func ExampleDecoder_Decode_stream() {
 	fmt.Printf("%T: %v\n", t, t)
 
 	// Output:
-	// json.Delim: [
+	// ejson.Delim: [
 	// Ed: Knock knock.
 	// Sam: Who's there?
 	// Ed: Go fmt.
 	// Sam: Go fmt who?
 	// Ed: Go fmt yourself!
-	// json.Delim: ]
+	// ejson.Delim: ]
 
 }
 
@@ -195,7 +197,7 @@ func ExampleRawMessage() {
 		{"Space": "RGB",   "Point": {"R": 98, "G": 218, "B": 255}}
 	]`)
 	var colors []Color
-	err := json.Unmarshal(j, &colors)
+	err := ejson.Unmarshal(j, &colors)
 	if err != nil {
 		log.Fatalln("error:", err)
 	}
@@ -208,7 +210,7 @@ func ExampleRawMessage() {
 		case "YCbCr":
 			dst = new(YCbCr)
 		}
-		err := json.Unmarshal(c.Point, dst)
+		err := ejson.Unmarshal(c.Point, dst)
 		if err != nil {
 			log.Fatalln("error:", err)
 		}
@@ -229,13 +231,13 @@ func ExampleIndent() {
 		{"Sheep Creek", 51},
 	}
 
-	b, err := json.Marshal(roads)
+	b, err := ejson.Marshal(roads)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	var out bytes.Buffer
-	json.Indent(&out, b, "=", "\t")
+	ejson.Indent(&out, b, "=", "\t")
 	out.WriteTo(os.Stdout)
 	// Output:
 	// [
