@@ -73,7 +73,7 @@ import (
 // Array and slice values encode as JSON arrays (with the exception
 // of byte slices, see below), and a nil slice encodes as the null JSON value.
 //
-// Byte slice values encod as EJSON-compatible objects, containing
+// Byte slice values encode as EJSON-compatible objects, containing
 // a single key "$binary" with a string value that contains base64
 // encoded data.
 //
