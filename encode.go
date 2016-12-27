@@ -70,12 +70,14 @@ import (
 // Ampersand "&" is also escaped to "\u0026" for the same reason.
 // This escaping can be disabled using an Encoder with DisableHTMLEscaping.
 //
-// Array and slice values encode as JSON arrays, except that
-// []byte encodes as an EJSON-compatible object containing a
-// single key "$binary" with a base64-encoded string value,
-// and a nil slice encodes as the null JSON value.
+// Array and slice values encode as JSON arrays (with the exception
+// of byte slices, see below), and a nil slice encodes as the null JSON value.
 //
-// time.Time values encode as an EJSON-compatible object containing
+// Byte slice values encod as EJSON-compatible objects, containing
+// a single key "$binary" with a string value that contains base64
+// encoded data.
+//
+// time.Time values encode as EJSON-compatible objects, containing
 // a single key "$date" with a numeric value representing Unix time
 // in milliseconds.
 //
