@@ -5,8 +5,8 @@
 // Package ejson implements encoding and decoding of Meteor's EJSON
 // (Extended JSON). The mapping between EJSON and Go values is
 // identical to package encoding/json (which this package is based
-// upon), but with EJSON encoding for []byte and time.Time.
-// The mapping between JSON and Go values is described
+// upon), but with built-in EJSON encoding and decoding for []byte
+// and time.Time. The mapping between JSON and Go values is described
 // in the documentation for the Marshal and Unmarshal functions.
 //
 // All EJSON serializations are also valid JSON. For example, an
@@ -16,6 +16,9 @@
 //       "d": {"$date": 1358205756553},
 //       "b": {"$binary": "c3VyZS4="}
 //  }
+//
+// Where $date is Unix time in milliseconds, and $binary is base64
+// encoded data.
 //
 // This package should be used as a drop-in replacement for package
 // encoding/json whenever EJSON encoding is required.
