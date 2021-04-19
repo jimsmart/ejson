@@ -1,6 +1,9 @@
 # ejson
 
-[![BSD-style](https://img.shields.io/badge/license-BSD--style-blue.svg?style=flat)](LICENSE) [![Build Status](https://img.shields.io/travis/jimsmart/ejson/master.svg?style=flat)](https://travis-ci.org/jimsmart/ejson) [![codecov](https://codecov.io/gh/jimsmart/ejson/branch/master/graph/badge.svg)](https://codecov.io/gh/jimsmart/ejson) [![Godoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/jimsmart/ejson)
+[![BSD-style](https://img.shields.io/badge/license-BSD--style-blue.svg?style=flat)](LICENSE)
+[![Build Status](https://github.com/jimsmart/ejson/actions/workflows/main.yml/badge.svg)](https://github.com/jimsmart/ejson/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/jimsmart/ejson/branch/master/graph/badge.svg)](https://codecov.io/gh/jimsmart/ejson)
+[![Godoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/jimsmart/ejson)
 
 ejson is a [Go](https://golang.org) package that implements encoding and decoding of Meteor's EJSON (Extended JSON).
 
@@ -22,8 +25,9 @@ This package should be used as a drop-in replacement for package encoding/json w
 Package ejson is derived from a subtree-branch of Go's encoding/json package, currently tracking Go 1.7.4.
 
 ## Installation
+
 ```bash
-$ go get github.com/jimsmart/ejson
+go get github.com/jimsmart/ejson
 ```
 
 ```go
@@ -47,3 +51,7 @@ Package encoding/json is copyright 2009 The Go Authors and released under a [BSD
 ## Contributing
 
 Bug reports are helpful and pull requests are welcome.
+
+## History
+
+- v0.0.1 (2021-04-19) Use Go modules. Switch from Travis CI to GitHub Acions.
