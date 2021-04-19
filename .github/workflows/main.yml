@@ -30,11 +30,11 @@ jobs:
     - name: Build project
       run: go build .
       
-    # Run go vet & golint
-    - name: Run go vet & golint
-      run: |
-        go vet .
-        golint .
+    # # Run go vet & golint
+    # - name: Run go vet & golint
+    #   run: |
+    #     go vet .
+    #     golint .
     
     # Run tests
     - name: Run tests
