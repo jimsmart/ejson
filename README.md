@@ -54,4 +54,4 @@ Bug reports are helpful and pull requests are welcome.
 
 ## History
 
-- v0.0.1 (2021-04-19) Use Go modules. Switch from Travis CI to GitHub Acions.
+- v0.0.1 (2021-04-19) Use Go modules. Switch from Travis CI to GitHub Actions.
