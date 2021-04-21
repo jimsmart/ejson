@@ -1,7 +1,7 @@
 # ejson
 
 [![BSD-style](https://img.shields.io/badge/license-BSD--style-blue.svg?style=flat)](LICENSE)
-[![Build Status](https://github.com/jimsmart/ejson/actions/workflows/main.yml/badge.svg)](https://github.com/jimsmart/ejson/actions/workflows/main.yml)
+[![Build Status](https://github.com/jimsmart/ejson/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/jimsmart/ejson/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/jimsmart/ejson/branch/master/graph/badge.svg)](https://codecov.io/gh/jimsmart/ejson)
 [![Godoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/jimsmart/ejson)
 
